@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --main-btn-border: rgb(189, 180, 235);
+  --secondary-btn-border: rgb(119, 160, 236);
+  --main-bg : rgb(250, 249, 247);
+}
+
+* {
+    font-family: "Noto Sans Mono", "Roboto", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--main-bg);
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    font-size: 1.5rem;
+    color: black;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    
+    border: 2px solid var(--main-btn-border);
+    background-color: var(--main-bg);
+}
+
+.main-section button {
+    border-color: var(--secondary-btn-border);
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks-projecs-section {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    margin-top: 0;
+    position: sticky;
+    padding: 1rem;
+    min-width: 20%;
+}
+
+.tasks-projecs-section button {
+    width: 100%;
+}
+
+.main-section {
+    width: 100%;
+}
