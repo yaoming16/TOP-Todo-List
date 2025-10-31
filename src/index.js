@@ -13,8 +13,6 @@ body.insertAdjacentHTML("beforeend", taskModal);
 const createTaskModal = document.querySelector("#create-task-modal");
 const createTaskBtn = document.querySelector("#create-task-btn");
 
-createTaskModal.close();
-
 //Event to show create task modal
 createTaskBtn.addEventListener("click", () => {
     createTaskModal.showModal();
