@@ -1,0 +1,8 @@
+#create-task-modal {
+    margin:auto auto;
+    width: 40%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    
+}
