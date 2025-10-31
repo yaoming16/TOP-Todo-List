@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const createTaskModal = document.querySelector("#create-task-modal");
     
     closeButton.addEventListener("click", () => createTaskModal.close());
+
+    
 })
 
 

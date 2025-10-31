@@ -6,3 +6,13 @@
     flex-direction: column;
     
 }
+
+/* hide native dialog when not open (override browser/css that forces it visible) */
+dialog:not([open]) {
+    display: none !important;
+}
+
+/* fallback visible class for environments without dialog API */
+dialog.visible {
+    display: block;
+}
