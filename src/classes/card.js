@@ -1,5 +1,4 @@
 export class Card {
-
     #title;
     #description;
     #dueDate;

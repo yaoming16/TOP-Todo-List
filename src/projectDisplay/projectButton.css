@@ -1,0 +1,10 @@
+.project-button {
+    width: 100px;
+    border: 2px solid rgb(235, 180, 234);
+}
+
+.project-button-active {
+    border-width: 4px;
+    border-color: rgb(207, 131, 206);
+    font-weight: 500;
+}

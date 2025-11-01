@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-</head>
-<body class="body">
-    <main>
-        <section class="tasks-projecs-section flex-col">
-            <h1>To-do List</h1>
-            <div class="flex-col">
-                <button id="create-task-btn">Create Task</button>
-                <button>All</button>
-                <button>Completed</button>
-                <button>To Do</button>
-            </div>
-            <div>
-                <button>New Project</button>
-                <div class="projects-div"></div>
-            </div>
-        </section>
-        <section class="main-section">
-            <h2 class="current-state">asd</h2>
-            <div class="">
-                <h3>Priority</h3>
-                <div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo List</title>
+    </head>
+    <body class="body">
+        <main>
+            <section class="tasks-projecs-section flex-col">
+                <h1>To-do List</h1>
+                <div class="flex-col">
+                    <button id="create-task-btn">Create Task</button>
                     <button>All</button>
-                    <button>Low</button>
-                    <button>Medium</button>
-                    <button>High</button>
+                    <button>Completed</button>
+                    <button>To Do</button>
                 </div>
-            </div>
-        </section>
-    </main>
-    
-</body>
+                <hr />
+                <div>
+                    <button id="create-project-btn">New Project</button>
+                    <h2>Projects</h2>
+                    <div class="projects-div" id="projects-div"></div>
+                </div>
+            </section>
+            <section class="main-section">
+                <h2 class="current-state">asd</h2>
+                <div class="">
+                    <h3>Priority</h3>
+                    <div>
+                        <button>All</button>
+                        <button>Low</button>
+                        <button>Medium</button>
+                        <button>High</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
 </html>
