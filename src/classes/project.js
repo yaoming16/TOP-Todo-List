@@ -40,6 +40,20 @@ export class Project {
     addTask(task) {
         this.#tasks.push(task);
     }
+
+    /**
+     * Removes a task of id "taskID" from the tasks array
+     * @param {string} taskID id of task we want to delete
+     */
+    removeTask(taskID) {
+        const indexToRemove = this.#tasks.findIndex(
+            (elem) => elem.id === taskID
+        );
+        console.log("index", indexToRemove);
+        if (indexToRemove !== -1) {
+            this.#tasks.splice(indexToRemove, 1);
+        }
+    }
 }
 
 export class ProjectList {

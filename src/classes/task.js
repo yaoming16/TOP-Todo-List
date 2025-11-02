@@ -1,9 +1,12 @@
+const { v4: uuidv4 } = require("uuid");
+
 export class Task {
     #title;
     #description;
     #dueDate;
     #priority;
     #completed;
+    #id;
 
     /**
      *
@@ -11,13 +14,15 @@ export class Task {
      * @param {string} description
      * @param {Date} dueDate
      * @param {string} priority Only use this values: "low", "medium", "high"
+     * @param {string} id
      */
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate, priority, id) {
         this.#title = title;
         this.#description = description;
         this.#dueDate = dueDate;
         this.#priority = priority;
         this.#completed = false;
+        this.#id = uuidv4();
     }
 
     get title() {
@@ -38,5 +43,9 @@ export class Task {
 
     get completed() {
         return this.#completed;
+    }
+
+    get id() {
+        return this.#id;
     }
 }

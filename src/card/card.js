@@ -1,4 +1,6 @@
 import { ProjectList } from "../classes/project";
+import "./card.css";
+import deleteButtonSVG from "./deleteButton.html";
 
 /**
  * Creates a card element to show a task
@@ -11,7 +13,7 @@ function createCard(task, cardNum) {
 
     //Card title
     const cardH3 = document.createElement("h3");
-    cardH3.textContent = task.name;
+    cardH3.textContent = task.title;
 
     //Card description
     const cardDesc = document.createElement("p");
@@ -34,12 +36,12 @@ function createCard(task, cardNum) {
 
     //Card Date
     const dateP = document.createElement("p");
-    dateP.textContent = task.date;
+    dateP.textContent = task.dueDate;
 
     cardDiv.appendChild(cardH3);
     cardDiv.appendChild(cardDesc);
-    cardDiv.appendChild(statusDiv);
     cardDiv.appendChild(dateP);
+    cardDiv.appendChild(statusDiv);
 
     return cardDiv;
 }
@@ -57,6 +59,18 @@ export function addCardToActiveProject(projectList, container) {
 
     const activeProject = projectList.activeProject();
     activeProject.tasks.forEach((element, index) => {
-        container.appendChild(createCard(element, index));
+        const card = createCard(element, index);
+        //Add the delete button
+        const deleteButton = document.createElement("button");
+
+        deleteButton.addEventListener("click", () => {
+            activeProject.removeTask(element.id);
+            addCardToActiveProject(projectList, container);
+        });
+
+        deleteButton.insertAdjacentHTML("beforeend", deleteButtonSVG);
+        card.appendChild(deleteButton);
+
+        container.appendChild(card);
     });
 }
