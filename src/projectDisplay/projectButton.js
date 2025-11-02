@@ -1,3 +1,5 @@
+import deleteButtonSVG from "../card/deleteButton.html";
+
 //Create project button
 export default function projectButton(project) {
     const projectButton = document.createElement("button");
@@ -8,6 +10,9 @@ export default function projectButton(project) {
     if (project.selected) {
         projectButton.classList.add("project-button-active");
     }
+
+    // Here bug
+    projectButton.insertAdjacentElement("beforeend", deleteButtonSVG);
 
     return projectButton;
 }
