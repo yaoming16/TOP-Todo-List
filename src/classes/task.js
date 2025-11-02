@@ -22,7 +22,7 @@ export class Task {
         this.#dueDate = dueDate;
         this.#priority = priority;
         this.#completed = false;
-        this.#id = uuidv4();
+        this.#id = "T-" + uuidv4();
     }
 
     get title() {

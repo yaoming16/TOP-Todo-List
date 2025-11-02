@@ -63,6 +63,7 @@ export function addCardToActiveProject(projectList, container) {
         //Add the delete button
         const deleteButton = document.createElement("button");
 
+        //Delete functionality
         deleteButton.addEventListener("click", () => {
             activeProject.removeTask(element.id);
             addCardToActiveProject(projectList, container);

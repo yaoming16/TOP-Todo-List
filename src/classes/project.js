@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require("uuid");
+
 export class Project {
     #name;
     #tasks;
@@ -10,11 +12,11 @@ export class Project {
      * @param {number} idNumber - The project number for the id.
      * @param {boolean} selected - Tells if the project is selected.
      */
-    constructor(name, idNumber, selected = false) {
+    constructor(name, selected = false) {
         this.#name = name;
         this.#selected = selected;
         this.#tasks = [];
-        this.#id = `P-${idNumber}`;
+        this.#id = "P-" + uuidv4();
     }
 
     get name() {
@@ -49,7 +51,6 @@ export class Project {
         const indexToRemove = this.#tasks.findIndex(
             (elem) => elem.id === taskID
         );
-        console.log("index", indexToRemove);
         if (indexToRemove !== -1) {
             this.#tasks.splice(indexToRemove, 1);
         }
@@ -74,12 +75,17 @@ export class ProjectList {
     }
 
     /**
-     * Creates and dds a project to the projects list nad increses the
+     * Creates and dds a project to the projects list and increses the counter.
+     * If it is there isnt any other project in the projects array the project added is set as selected
      * @param {string} name - Name of the project to add .
-     * @param {boolean} selected - Tells if the new project is selected.
      */
-    addProject(name, selected = false) {
-        this.#projects.push(new Project(name, this.#projectCount, selected));
+    addProject(name) {
+        //set as active the project if projects is empty
+        if (this.#projectCount === 0) {
+            this.#projects.push(new Project(name, true));
+        } else {
+            this.#projects.push(new Project(name, false));
+        }
         this.#projectCount++;
     }
 
@@ -89,5 +95,27 @@ export class ProjectList {
      */
     activeProject() {
         return this.#projects.find((elem) => elem.selected);
+    }
+
+    /**
+     * Removes the project with "projectID" ID from the "projects" array
+     * @param {string} projectID Id of the project we want to remove
+     */
+    removeProject(projectID) {
+        const indexToRemove = this.#projects.findIndex(
+            (elem) => elem.id === projectID
+        );
+        if (indexToRemove !== -1) {
+            this.#projects.splice(indexToRemove, 1);
+            this.#projectCount--;
+            console.log(this.activeProject);
+            // check if the project we want to remove is selected
+            if (this.#projects[indexToRemove].selected) {
+                //if selected and projects isnt empty we change other project to selected
+                if (this.#projectCount !== 0) {
+                    this.#projects[0].selected = true;
+                }
+            }
+        }
     }
 }

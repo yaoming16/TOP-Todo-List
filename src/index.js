@@ -52,7 +52,7 @@ closeButtons.forEach((btn, index) => {
 let projectList = new ProjectList();
 
 //Create default project
-projectList.addProject("Daily Tasks", true);
+projectList.addProject("Daily Tasks");
 
 //Add example task
 const exampleTask = new Task(

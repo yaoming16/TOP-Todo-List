@@ -1,6 +1,7 @@
 import { Project, ProjectList } from "../classes/project.js";
 import projectButton from "./projectButton.js";
 import { addCardToActiveProject } from "../card/card.js";
+import { deleteBtn } from "./deleteProjectButton.js";
 
 import "./projectButton.css";
 
@@ -26,8 +27,12 @@ export function addProjectsToDisplay(
     }
 
     projectsArray.forEach((elem) => {
-        const projectBtn = projectButton(elem);
+        //Create project div
+        const projectDiv = document.createElement("div");
+        projectDiv.id = elem.id;
 
+        //Create project button
+        const projectBtn = projectButton(elem);
         projectBtn.addEventListener("click", () => {
             //First deselect the active item
             projectList.activeProject().selected = false;
@@ -44,7 +49,22 @@ export function addProjectsToDisplay(
             addCardToActiveProject(projectList, cardContainer);
         });
 
-        projectContainer.appendChild(projectBtn);
+        //Add delete button and functionality
+        const deleteProjectBtn = deleteBtn();
+        deleteProjectBtn.addEventListener("click", () => {
+            document.querySelector(`#${elem.id}`).remove();
+            projectList.removeProject(elem.id);
+            if (projectList.projectCount !== 0) {
+                document
+                    .querySelector(`#${projectList.activeProject().id}`)
+                    .classList.add("project-button-active`");
+            }
+        });
+
+        projectDiv.appendChild(projectBtn);
+        projectDiv.appendChild(deleteProjectBtn);
+
+        projectContainer.appendChild(projectDiv);
     });
 }
 
