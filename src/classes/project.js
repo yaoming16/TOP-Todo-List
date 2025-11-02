@@ -68,4 +68,12 @@ export class ProjectList {
         this.#projects.push(new Project(name, this.#projectCount, selected));
         this.#projectCount++;
     }
+
+    /**
+     *Returns the active project
+     * @returns The project that is active right now
+     */
+    activeProject() {
+        return this.#projects.find((elem) => elem.selected);
+    }
 }

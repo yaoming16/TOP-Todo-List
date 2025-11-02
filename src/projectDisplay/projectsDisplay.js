@@ -1,22 +1,36 @@
-import { Project } from "../classes/project.js";
+import { Project, ProjectList } from "../classes/project.js";
 import projectButton from "./projectButton.js";
+import { addCardToActiveProject } from "../card/card.js";
 
 import "./projectButton.css";
 
 /**
  * Add projects to a DOM element
- * @param {Project} projects Project to add to container
- * @param {Element} container DOM element where to add the Project
+ * @param {ProjectList} projectList ProjectList of objects Projects to  display
+ * @param {Element} projectContainer DOM element where to add the Project
+ * @param {Element} cardContainer Dom element where the cards are added
+ * @param {boolean} onlyLast boolean value to set if we only want to add the last value
  */
-export function addProjectsToDisplay(projects, container) {
-    projects.forEach((elem) => {
+export function addProjectsToDisplay(
+    projectList,
+    projectContainer,
+    cardContainer,
+    onlyLast = false
+) {
+    // Set if only add last project to the display
+    let projectsArray;
+    if (!onlyLast) {
+        projectsArray = projectList.projects;
+    } else {
+        projectsArray = [projectList.projects[projectList.projectCount - 1]];
+    }
+
+    projectsArray.forEach((elem) => {
         const projectBtn = projectButton(elem);
 
         projectBtn.addEventListener("click", () => {
-            //First deselect all buttons
-            projects.forEach((item) => {
-                item.selected = false;
-            });
+            //First deselect the active item
+            projectList.activeProject().selected = false;
 
             // Remove active class from all project buttons
             document.querySelectorAll(".project-button").forEach((btn) => {
@@ -25,9 +39,12 @@ export function addProjectsToDisplay(projects, container) {
 
             elem.selected = true;
             projectBtn.classList.add("project-button-active");
+
+            //When user changes selected project we need to change the displayed cards
+            addCardToActiveProject(projectList, cardContainer);
         });
 
-        container.appendChild(projectBtn);
+        projectContainer.appendChild(projectBtn);
     });
 }
 
@@ -42,7 +59,6 @@ export function addProjectsToForm(projects, container) {
         container.children[i].remove();
     }
 
-    console.log(projects);
     //Add new options
     projects.forEach((elem) => {
         const option = document.createElement("option");
