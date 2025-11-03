@@ -1,5 +1,135 @@
+.card-div {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 12px 0;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    border: 1px solid #e1e1e1;
+}
+
+.card-div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Title */
+.card-div h3 {
+    margin: 0 0 12px 0;
+    color: #2c3e50;
+    font-size: 1.25rem;
+    padding-right: 30px; 
+}
+
+/* Priority styling */
+.card-div p:first-of-type {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 8px 0;
+    font-weight: 500;
+}
+
+/* Description */
+.card-div p:nth-of-type(2) {
+    color: #444;
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+/* Date styling */
+.card-div p:nth-of-type(3) {
+    color: #666;
+    font-size: 0.85rem;
+    margin: 8px 0;
+}
+
+/* Status checkbox container */
+.card-div div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* Checkbox styling */
+.card-div input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #2ecc71;
+}
+
+.card-div label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Delete button */
 .card-div button {
-    border: 0;
-    width: 10px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    width: auto; /* Override your existing width: 10px */
+}
+
+.card-div button:hover {
+    opacity: 1;
+}
+
+/* Delete button SVG */
+.card-div button svg {
+    width: 32px;
+    height: 32px;
+    fill: #e74c3c;
+}
+
+/* Priority colors */
+.card-div[data-priority="high"] p:first-of-type {
+    color: #e74c3c;
+}
+
+.card-div[data-priority="medium"] p:first-of-type {
+    color: #f39c12;
+}
+
+.card-div[data-priority="low"] p:first-of-type {
+    color: #27ae60;
+}
+
+/* Completed card styling */
+.completed-card-div {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+    opacity: 0.8;
+}
+
+.completed-card-div h3 {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.completed-card-div p {
+    color: #6c757d !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .card-div {
+        padding: 15px;
+    }
+    
+    .card-div h3 {
+        font-size: 1.1rem;
+    }
 }
 

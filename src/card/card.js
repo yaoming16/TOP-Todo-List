@@ -7,12 +7,14 @@ import deleteButtonSVG from "./deleteButton.html";
  * @param {Task} task the Task we want to show in the card
  * @param {number} cardNumber number to asign id for the checkbox label
  * @param {ProjectList} projectList ProjectList object
- * @return 
+ * @param {Element} cardContainer container where the cards are added
+ * @return a card DOM element with the data of the task
  */
-function createCard(task, cardNum, projectList) {
+function createCard(task, cardNum, projectList, cardContainer) {
     //Card container
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card-div");
+    cardDiv.dataset.priority = task.priority;
 
     //Card title
     const cardH3 = document.createElement("h3");
@@ -63,7 +65,7 @@ function createCard(task, cardNum, projectList) {
     //Delete functionality
     deleteButton.addEventListener("click", () => {
         activeProject.removeTask(task.id);
-        addCardOfActiveProject(projectList, container);
+        addCardOfActiveProject(projectList, cardContainer);
     });
 
 
@@ -82,17 +84,17 @@ function createCard(task, cardNum, projectList) {
 /**
  * Creates "Cards" based on the active project in "projectList", then adds them to "container"
  * @param {ProjectList} projectList
- * @param {Element} container
+ * @param {Element} cardContainer
  */
-export function addCardOfActiveProject(projectList, container) {
+export function addCardOfActiveProject(projectList, cardContainer) {
     //Remove content
-    while (container.firstChild) {
-        container.removeChild(container.firstChild);
+    while (cardContainer.firstChild) {
+        cardContainer.removeChild(cardContainer.firstChild);
     }
 
     const activeProject = projectList.activeProject();
     activeProject.tasks.forEach((element, index) => {
-        const card = createCard(element, index, projectList);
-        container.appendChild(card);
+        const card = createCard(element, index, projectList, cardContainer);
+        cardContainer.appendChild(card);
     });
 }
