@@ -16,7 +16,7 @@ export class Task {
      * @param {string} priority Only use this values: "low", "medium", "high"
      * @param {string} id
      */
-    constructor(title, description, dueDate, priority, id) {
+    constructor(title, description, dueDate, priority) {
         this.#title = title;
         this.#description = description;
         this.#dueDate = dueDate;
@@ -43,6 +43,11 @@ export class Task {
 
     get completed() {
         return this.#completed;
+    }
+
+    //Only set completed as oposite of what already is
+    set completed(newValue) {
+        this.#completed = !this.#completed;
     }
 
     get id() {

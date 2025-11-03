@@ -1,6 +1,13 @@
 import { addCardOfActiveProject } from "../card/card.js";
 
 //Create project button
+/**
+ * Creates a project button
+ * @param {Project} project project that the button will represent
+ * @param {ProjectList} projectList ProjectList object, all projects in ProjectList.projects
+ * @param {Elem} cardContainer container that will have all cards
+ * @returns returns the project Btn
+ */
 export default function projectButton(project, projectList, cardContainer) {
     const projectBtn = document.createElement("button");
     projectBtn.classList.add("project-button");
