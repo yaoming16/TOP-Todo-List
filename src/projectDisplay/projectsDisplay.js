@@ -56,7 +56,9 @@ export function addProjectsToDisplay(
             projectList.removeProject(elem.id);
             if (projectList.projectCount !== 0) {
                 document
-                    .querySelector(`#${projectList.activeProject().id}`)
+                    .querySelector(
+                        `#${projectList.activeProject().id} button:first-child`
+                    )
                     .classList.add("project-button-active`");
             }
         });

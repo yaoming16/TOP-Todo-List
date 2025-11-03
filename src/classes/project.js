@@ -105,12 +105,12 @@ export class ProjectList {
         const indexToRemove = this.#projects.findIndex(
             (elem) => elem.id === projectID
         );
+        const deletedWasSelected = this.#projects[indexToRemove].selected;
         if (indexToRemove !== -1) {
             this.#projects.splice(indexToRemove, 1);
             this.#projectCount--;
-            console.log(this.activeProject);
             // check if the project we want to remove is selected
-            if (this.#projects[indexToRemove].selected) {
+            if (deletedWasSelected) {
                 //if selected and projects isnt empty we change other project to selected
                 if (this.#projectCount !== 0) {
                     this.#projects[0].selected = true;
