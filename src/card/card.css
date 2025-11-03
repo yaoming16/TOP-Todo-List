@@ -79,7 +79,7 @@
     justify-content: center;
     opacity: 0.6;
     transition: opacity 0.2s ease;
-    width: auto; /* Override your existing width: 10px */
+    width: auto; 
 }
 
 .card-div button:hover {
