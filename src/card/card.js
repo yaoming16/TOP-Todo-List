@@ -51,7 +51,7 @@ function createCard(task, cardNum) {
  * @param {ProjectList} projectList
  * @param {Element} container
  */
-export function addCardToActiveProject(projectList, container) {
+export function addCardOfActiveProject(projectList, container) {
     //Remove content
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -66,7 +66,7 @@ export function addCardToActiveProject(projectList, container) {
         //Delete functionality
         deleteButton.addEventListener("click", () => {
             activeProject.removeTask(element.id);
-            addCardToActiveProject(projectList, container);
+            addCardOfActiveProject(projectList, container);
         });
 
         deleteButton.insertAdjacentHTML("beforeend", deleteButtonSVG);

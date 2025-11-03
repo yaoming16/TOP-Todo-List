@@ -14,7 +14,7 @@ import {
 } from "./projectDisplay/projectsDisplay.js";
 import { ProjectList } from "./classes/project.js";
 
-import { addCardToActiveProject } from "./card/card.js";
+import { addCardOfActiveProject } from "./card/card.js";
 
 //Add modal
 const body = document.querySelector("body");
@@ -69,7 +69,7 @@ const projectsDiv = document.querySelector("#projects-div");
 addProjectsToDisplay(projectList, projectsDiv, cardsDiv);
 
 //Add projects to screen, we need to add the task of the active project
-addCardToActiveProject(projectList, cardsDiv);
+addCardOfActiveProject(projectList, cardsDiv);
 
 //Create new project
 const projectForm = document.querySelector("#project-form");
@@ -114,9 +114,15 @@ taskForm.addEventListener("submit", (event) => {
     //Add task to project
     selectedProject.addTask(new Task(title, description, dueDate, priority));
 
+    //Clear inputs
+    const allInputs = document.querySelectorAll("#create-task-form input");
+    for (const input of allInputs) {
+        input.value = "";
+    }
+
     //Close modal
     createTaskModal.close();
 
     //Add tasks
-    addCardToActiveProject(projectList, cardsDiv);
+    addCardOfActiveProject(projectList, cardsDiv);
 });

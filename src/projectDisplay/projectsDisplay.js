@@ -1,6 +1,5 @@
 import { Project, ProjectList } from "../classes/project.js";
 import projectButton from "./projectButton.js";
-import { addCardToActiveProject } from "../card/card.js";
 import { deleteBtn } from "./deleteProjectButton.js";
 
 import "./projectButton.css";
@@ -32,36 +31,10 @@ export function addProjectsToDisplay(
         projectDiv.id = elem.id;
 
         //Create project button
-        const projectBtn = projectButton(elem);
-        projectBtn.addEventListener("click", () => {
-            //First deselect the active item
-            projectList.activeProject().selected = false;
-
-            // Remove active class from all project buttons
-            document.querySelectorAll(".project-button").forEach((btn) => {
-                btn.classList.remove("project-button-active");
-            });
-
-            elem.selected = true;
-            projectBtn.classList.add("project-button-active");
-
-            //When user changes selected project we need to change the displayed cards
-            addCardToActiveProject(projectList, cardContainer);
-        });
+        const projectBtn = projectButton(elem, projectList, cardContainer);
 
         //Add delete button and functionality
-        const deleteProjectBtn = deleteBtn();
-        deleteProjectBtn.addEventListener("click", () => {
-            document.querySelector(`#${elem.id}`).remove();
-            projectList.removeProject(elem.id);
-            if (projectList.projectCount !== 0) {
-                document
-                    .querySelector(
-                        `#${projectList.activeProject().id} button:first-child`
-                    )
-                    .classList.add("project-button-active`");
-            }
-        });
+        const deleteProjectBtn = deleteBtn(elem, projectList, cardContainer);
 
         projectDiv.appendChild(projectBtn);
         projectDiv.appendChild(deleteProjectBtn);
