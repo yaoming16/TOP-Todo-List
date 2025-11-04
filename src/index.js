@@ -28,6 +28,29 @@ const cardsDiv = document.querySelector("#cards-div");
 const projectsDiv = document.querySelector("#projects-div");
 let projectList = new ProjectList();
 
+// Function to create default project
+function createDefaultProject() {
+    //Create default project
+    projectList.addProject("Daily Tasks");
+
+    //Add example task
+    const exampleTask = new Task(
+        "Example task",
+        "Welcome to my web app, hope you enjoy it",
+        new Date().toISOString().split('T')[0], // Format as YYYY-MM-DD
+        "medium"
+    );
+
+    projectList.projects[0].addTask(exampleTask);
+
+    addProjectsToDisplay(projectList, projectsDiv, cardsDiv);
+
+    //Add projects to screen, we need to add the task of the active project
+    addCardOfActiveProject(projectList, cardsDiv);
+}
+
+createDefaultProject();
+
 //Completed filters buttons
 const completedDivBtn = document.querySelectorAll("#completed-div-btn button");
 const completedDivBtnArray = ["all", "completed", "to-do"];
@@ -55,7 +78,6 @@ for (let i = 0; i < priorityDivBtnArray.length; i++) {
 
         priorityDivBtn.forEach((btn) => btn.classList.remove("active-priority-filter"));
         event.target.classList.add("active-priority-filter");
-
     });
 }
 
@@ -91,27 +113,6 @@ closeButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => modals[index].close());
 });
 
-//Projects
-//List of projects
-
-//Create default project
-projectList.addProject("Daily Tasks");
-
-//Add example task
-const exampleTask = new Task(
-    "Example task",
-    "Welcome to my web app, hope you enjoy it",
-    new Date(),
-    "medium"
-);
-
-projectList.projects[0].addTask(exampleTask);
-
-addProjectsToDisplay(projectList, projectsDiv, cardsDiv);
-
-//Add projects to screen, we need to add the task of the active project
-addCardOfActiveProject(projectList, cardsDiv);
-
 //Create new project
 const projectForm = document.querySelector("#project-form");
 
@@ -128,7 +129,6 @@ projectForm.addEventListener("submit", (event) => {
     
     //Add project to project list
     projectList.addProject(projectName);
-
 
     const inputProject = document.querySelector("#project-form input");
     inputProject.value = "";
@@ -172,12 +172,6 @@ taskForm.addEventListener("submit", (event) => {
         (project) => projectName === project.name
     );
 
-    //Error style for the selects
-    const allSelects = document.querySelectorAll("#create-task-form select");
-    for (const select of allSelects) {
-        select.classList.remove("select-error");
-    }
-
     if (selectedProject === undefined || priority === null || title.trim() === "" || description.trim() === "" || dueDate === "") {
         if (selectedProject === undefined) {
             projectSelect.classList.add("select-error");
@@ -193,14 +187,13 @@ taskForm.addEventListener("submit", (event) => {
     
     //Clear inputs
     const allInputs = document.querySelectorAll("#create-task-form input");
-       for (const input of allInputs) {
-           input.value = "";
+    for (const input of allInputs) {
+        input.value = "";
     }
 
     //Clear selects
-    for (const select of allSelects) {
-        select.selectedIndex = 0;
-    }
+    prioritySelect.selectedIndex = 0;
+    projectSelect.selectedIndex = 0; // Fixed: was selectedProject.selectedIndex
 
     //Close modal
     createTaskModal.close();
