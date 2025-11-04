@@ -60,11 +60,14 @@ export class Project {
 export class ProjectList {
     #projects;
     #projectCount;
-
+    #priorityFilter;
+    #completedFilter;
 
     constructor() {
         this.#projects = [];
         this.#projectCount = 0;
+        this.#completedFilter = "all";
+        this.#completedFilter = "all";
     }
 
     get projects() {

@@ -53,7 +53,6 @@ export function addProjectsToForm(projects, container) {
     for (let i = 1; i < container.children.length; i++) {
         container.children[i].remove();
     }
-
     //Add new options
     projects.forEach((elem) => {
         const option = document.createElement("option");

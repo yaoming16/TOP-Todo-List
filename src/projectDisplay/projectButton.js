@@ -21,15 +21,15 @@ export default function projectButton(project, projectList, cardContainer) {
     projectBtn.addEventListener("click", () => {
         //First deselect the active item
         projectList.activeProject().selected = false;
-    
+
         // Remove active class from all project buttons
         document.querySelectorAll(".project-button").forEach((btn) => {
             btn.classList.remove("project-button-active");
         });
-    
+
         project.selected = true;
         projectBtn.classList.add("project-button-active");
-    
+
         //When user changes selected project we need to change the displayed cards
         addCardOfActiveProject(projectList, cardContainer);
     });

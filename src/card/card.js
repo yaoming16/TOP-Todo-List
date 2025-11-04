@@ -2,6 +2,8 @@ import { ProjectList } from "../classes/project";
 import "./card.css";
 import deleteButtonSVG from "./deleteButton.html";
 
+import globals from "../classes/globals.js";
+
 /**
  * Creates a card element to show a task
  * @param {Task} task the Task we want to show in the card
@@ -22,7 +24,7 @@ function createCard(task, cardNum, projectList, cardContainer) {
 
     //Priority
     const cardPriority = document.createElement("p");
-    cardPriority.textContent = `Priority: ${task.priority}`
+    cardPriority.textContent = `Priority: ${task.priority}`;
 
     //Card description
     const cardDesc = document.createElement("p");
@@ -43,13 +45,13 @@ function createCard(task, cardNum, projectList, cardContainer) {
     //Change status of the taks on checkbox click
     cardStatus.addEventListener("click", () => {
         task.completed = !task.completed;
-        
+
         if (task.completed) {
             cardDiv.classList.add("completed-card-div");
         } else {
             cardDiv.classList.remove("completed-card-div");
         }
-    })
+    });
 
     statusDiv.appendChild(statusLabel);
     statusDiv.appendChild(cardStatus);
@@ -67,7 +69,6 @@ function createCard(task, cardNum, projectList, cardContainer) {
         activeProject.removeTask(task.id);
         addCardOfActiveProject(projectList, cardContainer);
     });
-
 
     deleteButton.insertAdjacentHTML("beforeend", deleteButtonSVG);
 
@@ -91,10 +92,47 @@ export function addCardOfActiveProject(projectList, cardContainer) {
     while (cardContainer.firstChild) {
         cardContainer.removeChild(cardContainer.firstChild);
     }
+    console.log(globals.priorityFilter);
 
-    const activeProject = projectList.activeProject();
-    activeProject.tasks.forEach((element, index) => {
-        const card = createCard(element, index, projectList, cardContainer);
+    let activeProjectTasks = [...projectList.activeProject().tasks];
+    //Need to filter the array before creating and showing the cards
+    //Filter for completed
+    if (globals.completedFilter === "to-do") {
+        activeProjectTasks = activeProjectTasks.filter(
+            (currentTask) => currentTask.completed === false
+        );
+    }
+    if (globals.completedFilter === "completed") {
+        activeProjectTasks = activeProjectTasks.filter(
+            (currentTask) => currentTask.completed === true
+        );
+    }
+
+    //Filter for priority
+    if (globals.priorityFilter === "low") {
+        activeProjectTasks = activeProjectTasks.filter(
+            (currentTask) => currentTask.priority === "low"
+        );
+    }
+    if (globals.priorityFilter === "medium") {
+        activeProjectTasks = activeProjectTasks.filter(
+            (currentTask) => currentTask.priority === "medium"
+        );
+    }
+
+    if (globals.priorityFilter === "high") {
+        activeProjectTasks = activeProjectTasks.filter(
+            (currentTask) => currentTask.priority === "high"
+        );
+    }
+
+    for (let i = 0; i < activeProjectTasks.length; i++) {
+        const card = createCard(
+            activeProjectTasks[i],
+            i,
+            projectList,
+            cardContainer
+        );
         cardContainer.appendChild(card);
-    });
+    }
 }

@@ -12,9 +12,41 @@ import {
     addProjectsToDisplay,
     addProjectsToForm,
 } from "./projectDisplay/projectsDisplay.js";
+
 import { ProjectList } from "./classes/project.js";
 
 import { addCardOfActiveProject } from "./card/card.js";
+
+import globals from "./classes/globals.js";
+
+// Create ProjectList object and get the dom elements to add content
+const cardsDiv = document.querySelector("#cards-div");
+const projectsDiv = document.querySelector("#projects-div");
+let projectList = new ProjectList();
+
+//Completed filters buttons
+const completedDivBtn = document.querySelectorAll("#completed-div-btn button");
+const completedDivBtnArray = ["all", "completed", "to-do"];
+
+//Completed filters events
+for (let i = 0; i < completedDivBtnArray.length; i++) {
+    completedDivBtn[i + 1].addEventListener("click", () => {
+        globals.completedFilter = completedDivBtnArray[i];
+        addCardOfActiveProject(projectList, cardsDiv);
+    });
+}
+
+//Priority filters buttons
+const priorityDivBtn = document.querySelectorAll("#priority-div-btn button");
+const priorityDivBtnArray = ["all", "low", "medium", "high"];
+
+//Completed filters events
+for (let i = 0; i < completedDivBtn.length; i++) {
+    priorityDivBtn[i].addEventListener("click", () => {
+        globals.priorityFilter = priorityDivBtnArray[i];
+        addCardOfActiveProject(projectList, cardsDiv);
+    });
+}
 
 //Add modal
 const body = document.querySelector("body");
@@ -49,7 +81,6 @@ closeButtons.forEach((btn, index) => {
 
 //Projects
 //List of projects
-let projectList = new ProjectList();
 
 //Create default project
 projectList.addProject("Daily Tasks");
@@ -64,8 +95,6 @@ const exampleTask = new Task(
 
 projectList.projects[0].addTask(exampleTask);
 
-const cardsDiv = document.querySelector("#cards-div");
-const projectsDiv = document.querySelector("#projects-div");
 addProjectsToDisplay(projectList, projectsDiv, cardsDiv);
 
 //Add projects to screen, we need to add the task of the active project
