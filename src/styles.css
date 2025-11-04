@@ -1,10 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-    --main-btn-border: rgb(189, 180, 235);
-    --secondary-btn-border: rgb(119, 160, 236);
-    --main-bg: rgb(250, 249, 247);
-    --line-color: rgb(148, 137, 202);
+    /* Softer, slightly more saturated purple for main buttons */
+    --main-btn-border: rgb(180, 170, 230);
+    --main-btn-active: rgb(150, 140, 210);
+    
+    /* Warmer blue tones for secondary elements */
+    --secondary-btn-border: rgb(110, 155, 235);
+    --secondary-btn-active: rgb(65, 125, 210);
+    
+    /* Updated background color - a very light purple-gray that's easy on the eyes */
+    --main-bg: #f8f7fd;
+    
+    /* Softer purple for lines */
+    --line-color: rgb(155, 145, 205);
 }
 
 * {
@@ -23,15 +32,93 @@ main {
     flex-direction: row;
 }
 
-button {
-    font-size: 1.5rem;
-    color: black;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    cursor: pointer;
+h1 {
+    height: 10%;
+    text-align: center;
+}
 
+button {
+    font-size: 1rem;
+    color: black;
+    padding: 0.8rem 1.2rem;       
+    border-radius: 8px;      
+    cursor: pointer;
     border: 2px solid var(--main-btn-border);
-    background-color: var(--main-bg);
+    background: white;
+    transition: all 0.2s ease-in-out;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    min-height: 44px;
+}
+
+button:hover {
+    background: rgba(180, 170, 230, 0.05);
+    transform: scale(1.02);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: scale(0.95);
+    background: rgba(180, 170, 230, 0.1);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(180, 170, 230, 0.3);
+}
+
+/* Disabled state */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.main-section {
+    padding: 1rem;
+}
+
+.main-section h2 {
+    margin-bottom: 0.5rem;
+}
+
+/* Active filter states */
+.active-completed-filter {
+    border-color: var(--main-btn-active);
+    font-weight: 500;
+    border-width: 2px;
+    background: rgba(150, 140, 210, 0.1);
+}
+
+.active-priority-filter {
+    border-color: var(--secondary-btn-active);
+    font-weight: 500;
+    border-width: 2px;
+    background: rgba(65, 125, 210, 0.1);
+}
+
+.main-section button {
+    border-color: var(--secondary-btn-border);
+}
+
+.main-section button:hover {
+    background: rgba(110, 155, 235, 0.05);
+}
+
+.main-section button:active {
+    background: rgba(110, 155, 235, 0.1);
+}
+
+/* Tasks-projects section buttons */
+.tasks-projecs-section button {
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: flex-start;
+    text-align: left;
 }
 
 hr {
@@ -45,6 +132,14 @@ dialog {
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    border: 2px solid var(--main-btn-border);
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--main-bg);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.50);
 }
 
 /* hide native dialog when not open (override browser/css that forces it visible) */
@@ -55,6 +150,34 @@ dialog:not([open]) {
 /* fallback visible class for environments without dialog API */
 dialog.visible {
     display: block;
+}
+
+input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.4rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+}
+
+select {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.4rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+}
+
+#priority-div-btn{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.5rem;
 }
 
 .main-section button {
@@ -74,6 +197,8 @@ dialog.visible {
     position: sticky;
     padding: 1rem;
     min-width: 20%;
+    display: flex;
+    flex-direction: column;
 }
 
 .tasks-projecs-section button {
@@ -84,3 +209,52 @@ dialog.visible {
 .main-section {
     width: 80%;
 }
+
+.active-completed-filter {
+    border-color: var(--main-btn-active);
+    font-weight: 500;
+    border-width: 4px;
+}
+
+.active-priority-filter {
+    border-color: var(--secondary-btn-active);
+    font-weight: 500;
+    border-width: 4px;
+}
+
+button.close-btn {
+    border: none ;
+    background-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    padding: 8px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    min-height: auto;
+}
+
+button.close-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: rotate(90deg);
+    color: #333;
+    box-shadow: none;
+}
+
+button.close-btn:active {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg) scale(0.95);
+    box-shadow: none;
+}
+
+button.close-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(180, 170, 230, 0.3);
+}
+

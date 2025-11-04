@@ -18,6 +18,10 @@ function createCard(task, cardNum, projectList, cardContainer) {
     cardDiv.classList.add("card-div");
     cardDiv.dataset.priority = task.priority;
 
+    if(task.completed) {
+        cardDiv.classList.add("completed-card-div");
+    }
+
     //Card title
     const cardH3 = document.createElement("h3");
     cardH3.textContent = task.title;
@@ -94,7 +98,7 @@ export function addCardOfActiveProject(projectList, cardContainer) {
     }
     console.log(globals.priorityFilter);
 
-    let activeProjectTasks = [...projectList.activeProject().tasks];
+    let activeProjectTasks = projectList.activeProject() !== undefined?  [...projectList.activeProject().tasks] : [];
     //Need to filter the array before creating and showing the cards
     //Filter for completed
     if (globals.completedFilter === "to-do") {

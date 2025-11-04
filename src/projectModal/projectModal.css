@@ -1,0 +1,12 @@
+#project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tittle-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}

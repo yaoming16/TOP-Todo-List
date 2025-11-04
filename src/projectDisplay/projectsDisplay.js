@@ -38,6 +38,7 @@ export function addProjectsToDisplay(
 
         projectDiv.appendChild(projectBtn);
         projectDiv.appendChild(deleteProjectBtn);
+        projectDiv.classList.add("project-button-container");
 
         projectContainer.appendChild(projectDiv);
     });

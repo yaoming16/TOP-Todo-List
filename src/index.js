@@ -19,6 +19,10 @@ import { addCardOfActiveProject } from "./card/card.js";
 
 import globals from "./classes/globals.js";
 
+import "./projectModal/projectModal.css";
+
+import "./taskModal/taskModal.css";
+
 // Create ProjectList object and get the dom elements to add content
 const cardsDiv = document.querySelector("#cards-div");
 const projectsDiv = document.querySelector("#projects-div");
@@ -30,9 +34,12 @@ const completedDivBtnArray = ["all", "completed", "to-do"];
 
 //Completed filters events
 for (let i = 0; i < completedDivBtnArray.length; i++) {
-    completedDivBtn[i + 1].addEventListener("click", () => {
+    completedDivBtn[i + 1].addEventListener("click", (event) => {
         globals.completedFilter = completedDivBtnArray[i];
         addCardOfActiveProject(projectList, cardsDiv);
+
+        completedDivBtn.forEach((btn) => btn.classList.remove("active-completed-filter"));
+        event.target.classList.add("active-completed-filter");
     });
 }
 
@@ -41,10 +48,14 @@ const priorityDivBtn = document.querySelectorAll("#priority-div-btn button");
 const priorityDivBtnArray = ["all", "low", "medium", "high"];
 
 //Completed filters events
-for (let i = 0; i < completedDivBtn.length; i++) {
-    priorityDivBtn[i].addEventListener("click", () => {
+for (let i = 0; i < priorityDivBtnArray.length; i++) {
+    priorityDivBtn[i].addEventListener("click", (event) => {
         globals.priorityFilter = priorityDivBtnArray[i];
         addCardOfActiveProject(projectList, cardsDiv);
+
+        priorityDivBtn.forEach((btn) => btn.classList.remove("active-priority-filter"));
+        event.target.classList.add("active-priority-filter");
+
     });
 }
 
@@ -56,6 +67,7 @@ body.insertAdjacentHTML("beforeend", projectModal);
 const createTaskModal = document.querySelector("#create-task-modal");
 const createTaskBtn = document.querySelector("#create-task-btn");
 const projectSelect = document.querySelector("#project-select");
+const prioritySelect = document.querySelector("#priority");
 
 //Event to show create task modal
 createTaskBtn.addEventListener("click", () => {
@@ -109,7 +121,14 @@ projectForm.addEventListener("submit", (event) => {
     const formData = new FormData(projectForm);
 
     const projectName = formData.get("project-name");
+
+    if (projectName.trim() === "") {
+        return;
+    }
+    
+    //Add project to project list
     projectList.addProject(projectName);
+
 
     const inputProject = document.querySelector("#project-form input");
     inputProject.value = "";
@@ -119,6 +138,19 @@ projectForm.addEventListener("submit", (event) => {
 
     //close modal
     createProjectModal.close();
+});
+
+// Remove error class when user selects a value
+projectSelect.addEventListener("change", () => {
+    if (projectSelect.value !== "") {
+        projectSelect.classList.remove("select-error");
+    }
+});
+
+prioritySelect.addEventListener("change", () => {
+    if (prioritySelect.value !== "") {
+        prioritySelect.classList.remove("select-error");
+    }
 });
 
 //Add task
@@ -140,18 +172,39 @@ taskForm.addEventListener("submit", (event) => {
         (project) => projectName === project.name
     );
 
+    //Error style for the selects
+    const allSelects = document.querySelectorAll("#create-task-form select");
+    for (const select of allSelects) {
+        select.classList.remove("select-error");
+    }
+
+    if (selectedProject === undefined || priority === null || title.trim() === "" || description.trim() === "" || dueDate === "") {
+        if (selectedProject === undefined) {
+            projectSelect.classList.add("select-error");
+        }
+        if (priority === null) {
+            prioritySelect.classList.add("select-error");
+        }
+        return;
+    }
+
     //Add task to project
     selectedProject.addTask(new Task(title, description, dueDate, priority));
-
+    
     //Clear inputs
     const allInputs = document.querySelectorAll("#create-task-form input");
-    for (const input of allInputs) {
-        input.value = "";
+       for (const input of allInputs) {
+           input.value = "";
+    }
+
+    //Clear selects
+    for (const select of allSelects) {
+        select.selectedIndex = 0;
     }
 
     //Close modal
     createTaskModal.close();
-
+    
     //Add tasks
     addCardOfActiveProject(projectList, cardsDiv);
 });

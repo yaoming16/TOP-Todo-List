@@ -1,0 +1,63 @@
+.select-error {
+    border: 2px solid #e74c3c;
+    background-color: rgba(231, 76, 60, 0.05);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+    transition: all 0.2s ease;
+}
+
+.select-error:focus {
+    outline: none;
+    border-color: #a02a1d;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.2);
+}
+
+/* Add shake animation for error state */
+.select-error {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Error message styling (if you want to add error text) */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    display: block;
+    font-weight: 500;
+}
+
+input {
+    transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+/* Input/select error variants */
+input:user-invalid
+ {
+    border: 2px solid #e74c3c;
+    background-color: rgba(231, 76, 60, 0.05);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+    animation: shake 0.3s ease-in-out;
+}
+
+input:user-invalid:focus {
+    outline: none;
+    border-color: #a02a1d;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.2);
+}

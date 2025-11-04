@@ -94,7 +94,7 @@ export class ProjectList {
     }
 
     /**
-     *Returns the active project
+     *Returns the active project or undefined if there is none
      * @returns The project that is active right now
      */
     activeProject() {

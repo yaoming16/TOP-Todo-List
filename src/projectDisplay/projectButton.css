@@ -1,10 +1,80 @@
+.project-button-container {
+    width: 100%;
+    display: flex;
+    align-items: stretch; 
+    margin-bottom: 8px; 
+}
+
 .project-button {
-    width: 100px;
+    flex: 0 0 80%;
     border: 2px solid rgb(235, 180, 234);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: white;
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px 0 0 8px; 
+    border-right: none;
+    font-size: 0.95rem;
+}
+
+.project-button:hover {
+    background: rgba(235, 180, 234, 0.05);
+    transform: scale(1.02);
 }
 
 .project-button-active {
-    border-width: 4px;
     border-color: rgb(207, 131, 206);
     font-weight: 500;
+    background: rgba(235, 180, 234, 0.1);
+}
+
+.delete-project-button {
+    flex: 0 0 20%;
+    padding: 6px;
+    border-radius: 0 8px 8px 0; 
+    border: 2px solid rgba(214, 48, 49, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+}
+
+.delete-project-button:hover {
+    background: rgba(214, 48, 49, 0.1);
+    border-color: rgba(214, 48, 49, 0.5);
+    transform: scale(1.02);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.delete-project-button:active {
+    transform: scale(0.95);
+    background: rgba(214, 48, 49, 0.2);
+}
+
+.delete-project-button svg {
+    width: 16px;
+    height: 16px;
+    fill: #d63031;
+    opacity: 0.8;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.delete-project-button:hover svg {
+    opacity: 1;
+}
+
+.project-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(235, 180, 234, 0.3);
+}
+
+.delete-project-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(214, 48, 49, 0.3);
 }
