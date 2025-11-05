@@ -12,10 +12,10 @@ export class Project {
      * @param {number} idNumber - The project number for the id.
      * @param {boolean} selected - Tells if the project is selected.
      */
-    constructor(name, selected = false) {
+    constructor(name, selected = false, tasks = []) {
         this.#name = name;
         this.#selected = selected;
-        this.#tasks = [];
+        this.#tasks = tasks;
         this.#id = "P-" + uuidv4();
     }
 
@@ -55,19 +55,24 @@ export class Project {
             this.#tasks.splice(indexToRemove, 1);
         }
     }
+
+    stringify() {
+        return JSON.stringify({
+            name: this.#name,
+            tasks: this.#tasks.map((task) => JSON.parse(task.stringify())),
+            selected: this.#selected,
+            id: this.#id,
+        });
+    }
 }
 
 export class ProjectList {
     #projects;
     #projectCount;
-    #priorityFilter;
-    #completedFilter;
 
-    constructor() {
-        this.#projects = [];
-        this.#projectCount = 0;
-        this.#completedFilter = "all";
-        this.#completedFilter = "all";
+    constructor(projects = [], projectCount = 0) {
+        this.#projects = projects;
+        this.#projectCount = projectCount;
     }
 
     get projects() {
@@ -79,11 +84,20 @@ export class ProjectList {
     }
 
     /**
-     * Creates and dds a project to the projects list and increses the counter.
+     * Creates a new project and adds it to the projects array if name is passed or adds the project passed directly
      * If it is there isnt any other project in the projects array the project added is set as selected
-     * @param {string} name - Name of the project to add .
+     * @param {string} name - Name of the project to add  / Only use one parameter, not both. Set the one you dont use to null if needed
+     * @param {Project} project - Project object to add directly / Only use one parameter, not both. Set the one you dont use to null if needed
      */
-    addProject(name) {
+    addProject(name = null, project = null) {
+        // When project is passed we add that project directly
+        if (project) {
+            this.#projects.push(project);
+            this.#projectCount++;
+            return;
+        }
+
+        //When name is passed we create a new project and add it
         //set as active the project if projects is empty
         if (this.#projectCount === 0) {
             this.#projects.push(new Project(name, true));
@@ -121,5 +135,12 @@ export class ProjectList {
                 }
             }
         }
+    }
+
+    stringify() {
+        return JSON.stringify({
+            projects: this.#projects.map((project) => JSON.parse(project.stringify())),
+            projectCount: this.#projectCount
+        });
     }
 }

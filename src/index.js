@@ -13,7 +13,7 @@ import {
     addProjectsToForm,
 } from "./projectDisplay/projectsDisplay.js";
 
-import { ProjectList } from "./classes/project.js";
+import { ProjectList, Project } from "./classes/project.js";
 
 import { addCardOfActiveProject } from "./card/card.js";
 
@@ -22,6 +22,7 @@ import globals from "./classes/globals.js";
 import "./projectModal/projectModal.css";
 
 import "./taskModal/taskModal.css";
+
 
 // Create ProjectList object and get the dom elements to add content
 const cardsDiv = document.querySelector("#cards-div");
@@ -37,7 +38,7 @@ function createDefaultProject() {
     const exampleTask = new Task(
         "Example task",
         "Welcome to my web app, hope you enjoy it",
-        new Date().toISOString().split('T')[0], // Format as YYYY-MM-DD
+        new Date().toISOString().split('T')[0], 
         "medium"
     );
 
@@ -49,7 +50,44 @@ function createDefaultProject() {
     addCardOfActiveProject(projectList, cardsDiv);
 }
 
-createDefaultProject();
+//save info on local storage
+window.addEventListener("beforeunload", (event) => {
+    const dataToSave = projectList.stringify();
+    window.localStorage.setItem("projectList", dataToSave);
+})
+
+//load info from local storage
+window.addEventListener("load", () => {
+    const savedData = window.localStorage.getItem("projectList");
+    if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        console.log(parsedData);
+        
+        parsedData.projects.forEach((projectData, index) => {
+            const project = new Project(projectData.name, projectData.selected);
+            projectData.tasks.forEach((taskData) => {
+                const task = new Task(
+                    taskData.title,
+                    taskData.description,
+                    taskData.dueDate,
+                    taskData.priority,
+                    taskData.completed,
+                );
+                project.addTask(task);
+            });
+            projectList.addProject(null, project);
+        });
+
+        //Add projects to display
+        addProjectsToDisplay(projectList, projectsDiv, cardsDiv);
+
+        //Add tasks of active project
+        addCardOfActiveProject(projectList, cardsDiv);
+    }
+    else {
+        createDefaultProject();
+    }
+});
 
 //Completed filters buttons
 const completedDivBtn = document.querySelectorAll("#completed-div-btn button");

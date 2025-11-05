@@ -15,9 +15,9 @@ export function deleteBtn(project, projectList, cardContainer) {
             const newActive = document.querySelector(`#${projectList.activeProject().id}`)
             newActive.classList.add("project-button-active");
 
-            //There is a new active project so we change the cards display
-            addCardOfActiveProject(projectList, cardContainer);             
         }
+        //Change display of cards
+        addCardOfActiveProject(projectList, cardContainer);       
     });
 
     return button;

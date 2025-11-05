@@ -96,9 +96,13 @@ export function addCardOfActiveProject(projectList, cardContainer) {
     while (cardContainer.firstChild) {
         cardContainer.removeChild(cardContainer.firstChild);
     }
-    console.log(globals.priorityFilter);
+    
+    // If projectList has no active project we dont add any cards
+    if (projectList.activeProject() === undefined) {
+        return;
+    }
 
-    let activeProjectTasks = projectList.activeProject() !== undefined?  [...projectList.activeProject().tasks] : [];
+    let activeProjectTasks =  [...projectList.activeProject().tasks];
     //Need to filter the array before creating and showing the cards
     //Filter for completed
     if (globals.completedFilter === "to-do") {
