@@ -4,14 +4,14 @@
     /* Softer, slightly more saturated purple for main buttons */
     --main-btn-border: rgb(180, 170, 230);
     --main-btn-active: rgb(150, 140, 210);
-    
+
     /* Warmer blue tones for secondary elements */
     --secondary-btn-border: rgb(110, 155, 235);
     --secondary-btn-active: rgb(65, 125, 210);
-    
+
     /* Updated background color - a very light purple-gray that's easy on the eyes */
     --main-bg: #f8f7fd;
-    
+
     /* Softer purple for lines */
     --line-color: rgb(155, 145, 205);
 }
@@ -51,12 +51,12 @@ h1 {
 button {
     font-size: 1rem;
     color: black;
-    padding: 0.8rem 1.2rem;       
-    border-radius: 8px;      
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
     cursor: pointer;
     border: 2px solid var(--main-btn-border);
     background: white;
-    transition: all 0.2s ease;   
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,7 +78,7 @@ button:active {
 
 button:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(180,170,230,0.3);
+    box-shadow: 0 0 0 3px rgba(180, 170, 230, 0.3);
 }
 
 button:disabled {
@@ -163,7 +163,7 @@ select {
     margin-bottom: 0.8rem;
 }
 
-#priority-div-btn{
+#priority-div-btn {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 0.5rem;
@@ -212,7 +212,7 @@ select {
 }
 
 button.close-btn {
-    border: none ;
+    border: none;
     background-color: transparent;
     font-size: 1.5rem;
     cursor: pointer;
@@ -269,39 +269,38 @@ button.close-btn:focus {
         padding: 0.75rem 1rem;
         min-height: 48px;
     }
-    
+
     .tasks-projecs-section {
         width: 30%;
         min-width: 25%;
         max-width: 320px;
     }
-    
+
     .tasks-projecs-section button {
         padding: 0.75rem;
         margin-top: 0.75rem;
         font-size: 0.85rem;
     }
-    
+
     .main-section {
         width: 70%;
     }
-    
+
     .main-section button {
         padding: 0.7rem 0.9rem;
         font-size: 0.85rem;
     }
-    
+
     #priority-div-btn button {
         padding: 0.6rem 0.5rem;
         font-size: 0.8rem;
         min-height: 44px;
-
     }
 
     #priority-div-btn {
         grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
     }
-    
+
     button.close-btn {
         width: 34px !important;
         height: 34px !important;
@@ -311,25 +310,25 @@ button.close-btn:focus {
 
 /* MOBILE (480px and down) */
 @media (max-width: 480px) {
-
     button {
         font-size: 0.8rem;
         padding: 0.5rem 0.7rem;
         min-height: 44px;
         font-weight: 500;
     }
-    
+
     button:hover {
         transform: none;
         background: rgba(180, 170, 230, 0.08);
     }
-    
+
     button:active {
         transform: scale(0.98);
         background: rgba(180, 170, 230, 0.15);
     }
 
-    .tasks-projecs-section, .main-section {
+    .tasks-projecs-section,
+    .main-section {
         padding: 0.5rem;
     }
 
@@ -338,24 +337,24 @@ button.close-btn:focus {
         min-width: 30%;
         max-width: 240px;
     }
-    
+
     .main-section {
         width: 65%;
     }
-    
+
     .tasks-projecs-section button {
         padding: 0.5rem;
         margin-top: 0.4rem;
         font-size: 0.75rem;
         min-height: 42px;
     }
-    
+
     .main-section button {
         padding: 0.5rem 0.6rem;
         font-size: 0.75rem;
         min-height: 42px;
     }
-    
+
     #priority-div-btn button {
         padding: 0.4rem 0.3rem;
         font-size: 0.7rem;
@@ -365,14 +364,14 @@ button.close-btn:focus {
     #priority-div-btn {
         grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
     }
-    
+
     button.close-btn {
         width: 32px !important;
         height: 32px !important;
         font-size: 1.2rem !important;
         padding: 4px !important;
     }
-    
+
     /* More compact primary buttons */
     #create-task-btn,
     #create-project-btn {
@@ -385,30 +384,43 @@ button.close-btn:focus {
 
 /* Desktop compaction */
 @media (min-width: 1024px) {
-  h1 { font-size: 1.6rem; margin-bottom: 1.25rem; }
-  h2 { font-size: 1.1rem; }
-  .current-state { font-size: 1.2rem; margin-bottom: 1rem; }
+    h1 {
+        font-size: 1.6rem;
+        margin-bottom: 1.25rem;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+    .current-state {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
 
-  .tasks-projecs-section {
-    width: 22%;
-    max-width: 360px; /* keep px cap */
-    padding: 1rem;
-  }
+    .tasks-projecs-section {
+        width: 22%;
+        max-width: 360px; /* keep px cap */
+        padding: 1rem;
+    }
 
-  .main-section {
-    width: 78%;
-    padding: 1.25rem;
-  }
+    .main-section {
+        width: 78%;
+        padding: 1.25rem;
+    }
 
-  button {
-    font-size: 0.95rem;
-    padding: 0.55rem 0.9rem;
-    min-height: 40px;
-  }
+    button {
+        font-size: 0.95rem;
+        padding: 0.55rem 0.9rem;
+        min-height: 40px;
+    }
 
-  #priority-div-btn { gap: 0.5rem; }
-  #cards-div { gap: 1rem; }
-  
-  dialog { padding: 1.25rem; }
+    #priority-div-btn {
+        gap: 0.5rem;
+    }
+    #cards-div {
+        gap: 1rem;
+    }
+
+    dialog {
+        padding: 1.25rem;
+    }
 }
-
