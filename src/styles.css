@@ -254,13 +254,6 @@ button.close-btn:focus {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-@media (max-width: 868px) {
-    #cards-div {
-        grid-template-columns: 1fr;
-    }
-}
-
-
 /* TABLET (768px and down) */
 @media (max-width: 768px) {
     h1 {
@@ -388,5 +381,34 @@ button.close-btn:focus {
         font-weight: 600;
         padding: 0.6rem 0.8rem;
     }
+}
+
+/* Desktop compaction */
+@media (min-width: 1024px) {
+  h1 { font-size: 1.6rem; margin-bottom: 1.25rem; }
+  h2 { font-size: 1.1rem; }
+  .current-state { font-size: 1.2rem; margin-bottom: 1rem; }
+
+  .tasks-projecs-section {
+    width: 22%;
+    max-width: 360px; /* keep px cap */
+    padding: 1rem;
+  }
+
+  .main-section {
+    width: 78%;
+    padding: 1.25rem;
+  }
+
+  button {
+    font-size: 0.95rem;
+    padding: 0.55rem 0.9rem;
+    min-height: 40px;
+  }
+
+  #priority-div-btn { gap: 0.5rem; }
+  #cards-div { gap: 1rem; }
+  
+  dialog { padding: 1.25rem; }
 }
 

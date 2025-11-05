@@ -89,10 +89,6 @@ dialog.visible {
 }
 
 @media (max-width: 750px) {
-    .title-div, #create-task-form {
-        
-    }
-
     dialog {
         padding: 1rem;
         width: 60%;
@@ -104,10 +100,6 @@ dialog.visible {
 }
 
 @media (max-width: 450px) {
-    .title-div, #create-task-form {
-        
-    }
-
     dialog {
         padding: 0.5rem;
         width: 80%

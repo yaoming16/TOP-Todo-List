@@ -194,3 +194,11 @@
     }
 }
 
+@media (min-width: 1024px) {
+  .card-div { padding: 16px; margin: 10px 0; }
+  .card-div h3 { font-size: 1.05rem; }
+  .card-div p:nth-of-type(2) { font-size: 0.92rem; }
+  .card-div p:nth-of-type(3) { font-size: 0.8rem; }
+  .card-div button svg { width: 24px; height: 24px; }
+}
+

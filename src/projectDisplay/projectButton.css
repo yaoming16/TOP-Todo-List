@@ -17,8 +17,10 @@
     border-radius: 8px 0 0 8px; 
     border-right: none;
     font-size: 0.95rem;
+    /* replace aggressive breaks with friendlier wrapping */
     text-wrap: wrap;
-    word-break: break-all;
+    overflow-wrap: anywhere;
+    word-break: break-word; /* was break-all */
 }
 
 .project-button:hover {
@@ -113,4 +115,13 @@
         width: 12px;
         height: 12px;
     }
+}
+
+@media (min-width: 1024px) {
+  .project-button-container { margin-bottom: 6px; }
+  .project-button { padding: 0.75rem; font-size: 0.9rem; }
+  .project-button:hover { transform: scale(1.01); }
+
+  .delete-project-button { padding: 4px; }
+  .delete-project-button svg { width: 14px; height: 14px; }
 }
