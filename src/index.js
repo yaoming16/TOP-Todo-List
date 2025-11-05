@@ -51,13 +51,35 @@ function createDefaultProject() {
 }
 
 //save info on local storage
-window.addEventListener("beforeunload", (event) => {
+window.addEventListener("beforeunload", () => {
+    //Save project list info
     const dataToSave = projectList.stringify();
     window.localStorage.setItem("projectList", dataToSave);
+
+    //Save globals info
+    const globalsData = JSON.stringify(globals);
+    window.localStorage.setItem("globals", globalsData);
 })
 
 //load info from local storage
 window.addEventListener("load", () => {
+    //Load globals info
+    const savedGlobals = window.localStorage.getItem("globals");
+    if (savedGlobals) {
+        const parsedGlobals = JSON.parse(savedGlobals);
+        globals.completedFilter = parsedGlobals.completedFilter;
+        globals.priorityFilter = parsedGlobals.priorityFilter;
+        
+        priorityDivBtn.forEach((btn) => btn.classList.remove("active-priority-filter"));
+        completedDivBtn.forEach((btn) => btn.classList.remove("active-completed-filter"));
+
+        console.log(globals.completedFilter, globals.priorityFilter);
+        document.querySelector(`#${globals.completedFilter}-btn`).classList.add("active-completed-filter");
+        document.querySelector(`#${globals.priorityFilter}-btn`).classList.add("active-priority-filter");
+
+    }
+    
+    //Load project list info
     const savedData = window.localStorage.getItem("projectList");
     if (savedData) {
         const parsedData = JSON.parse(savedData);
@@ -91,7 +113,7 @@ window.addEventListener("load", () => {
 
 //Completed filters buttons
 const completedDivBtn = document.querySelectorAll("#completed-div-btn button");
-const completedDivBtnArray = ["all", "completed", "to-do"];
+const completedDivBtnArray = ["completed-all", "completed", "to-do"];
 
 //Completed filters events
 for (let i = 0; i < completedDivBtnArray.length; i++) {
@@ -106,7 +128,7 @@ for (let i = 0; i < completedDivBtnArray.length; i++) {
 
 //Priority filters buttons
 const priorityDivBtn = document.querySelectorAll("#priority-div-btn button");
-const priorityDivBtnArray = ["all", "low", "medium", "high"];
+const priorityDivBtnArray = ["priority-all", "low", "medium", "high"];
 
 //Completed filters events
 for (let i = 0; i < priorityDivBtnArray.length; i++) {

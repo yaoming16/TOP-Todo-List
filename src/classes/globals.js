@@ -1,4 +1,4 @@
 export default {
-    priorityFilter: "all",
-    completedFilter: "all",
+    priorityFilter: "priority-all",
+    completedFilter: "completed-all",
 };

@@ -51,8 +51,8 @@ export function addProjectsToDisplay(
  */
 export function addProjectsToForm(projects, container) {
     //Remove existing options
-    for (let i = 1; i < container.children.length; i++) {
-        container.children[i].remove();
+    while (container.children.length > 1) {
+        container.removeChild(container.lastElementChild);
     }
     //Add new options
     projects.forEach((elem) => {
