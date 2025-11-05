@@ -30,11 +30,22 @@ body {
 main {
     display: flex;
     flex-direction: row;
+    height: 100vh;
 }
 
 h1 {
     height: 10%;
     text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 button {
@@ -45,7 +56,7 @@ button {
     cursor: pointer;
     border: 2px solid var(--main-btn-border);
     background: white;
-    transition: all 0.2s ease-in-out;   
+    transition: all 0.2s ease;   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,15 +78,18 @@ button:active {
 
 button:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(180, 170, 230, 0.3);
+    box-shadow: 0 0 0 3px rgba(180,170,230,0.3);
 }
 
-/* Disabled state */
 button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.priority-div h2 {
+    height: 10%;
 }
 
 .main-section {
@@ -124,32 +138,7 @@ button:disabled {
 hr {
     color: var(--line-color);
     margin-top: 1rem;
-}
-
-dialog {
-    margin: auto auto;
-    width: 40%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid var(--main-btn-border);
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: var(--main-bg);
-}
-
-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.50);
-}
-
-/* hide native dialog when not open (override browser/css that forces it visible) */
-dialog:not([open]) {
-    display: none !important;
-}
-
-/* fallback visible class for environments without dialog API */
-dialog.visible {
-    display: block;
+    margin-bottom: 1rem;
 }
 
 input {
@@ -196,18 +185,18 @@ select {
     margin-top: 0;
     position: sticky;
     padding: 1rem;
+    width: 25%;
     min-width: 20%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
 }
 
-.tasks-projecs-section button {
-    width: 100%;
-    margin-top: 1rem;
-}
-
 .main-section {
-    width: 80%;
+    width: 75%;
+    min-width: 0;
+    flex: 1;
+    padding: 1rem;
 }
 
 .active-completed-filter {
@@ -256,5 +245,148 @@ button.close-btn:active {
 button.close-btn:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(180, 170, 230, 0.3);
+}
+
+#cards-div {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+@media (max-width: 868px) {
+    #cards-div {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* TABLET (768px and down) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+        text-align: center;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        min-height: 48px;
+    }
+    
+    .tasks-projecs-section {
+        width: 30%;
+        min-width: 25%;
+        max-width: 320px;
+    }
+    
+    .tasks-projecs-section button {
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .main-section {
+        width: 70%;
+    }
+    
+    .main-section button {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.85rem;
+    }
+    
+    #priority-div-btn button {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.8rem;
+        min-height: 44px;
+
+    }
+
+    #priority-div-btn {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    }
+    
+    button.close-btn {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 1.4rem !important;
+    }
+}
+
+/* MOBILE (480px and down) */
+@media (max-width: 480px) {
+
+    button {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.7rem;
+        min-height: 44px;
+        font-weight: 500;
+    }
+    
+    button:hover {
+        transform: none;
+        background: rgba(180, 170, 230, 0.08);
+    }
+    
+    button:active {
+        transform: scale(0.98);
+        background: rgba(180, 170, 230, 0.15);
+    }
+
+    .tasks-projecs-section, .main-section {
+        padding: 0.5rem;
+    }
+
+    .tasks-projecs-section {
+        width: 35%;
+        min-width: 30%;
+        max-width: 240px;
+    }
+    
+    .main-section {
+        width: 65%;
+    }
+    
+    .tasks-projecs-section button {
+        padding: 0.5rem;
+        margin-top: 0.4rem;
+        font-size: 0.75rem;
+        min-height: 42px;
+    }
+    
+    .main-section button {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+        min-height: 42px;
+    }
+    
+    #priority-div-btn button {
+        padding: 0.4rem 0.3rem;
+        font-size: 0.7rem;
+        min-height: 40px;
+    }
+
+    #priority-div-btn {
+        grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+    }
+    
+    button.close-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1.2rem !important;
+        padding: 4px !important;
+    }
+    
+    /* More compact primary buttons */
+    #create-task-btn,
+    #create-project-btn {
+        min-height: 48px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.6rem 0.8rem;
+    }
 }
 

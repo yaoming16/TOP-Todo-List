@@ -61,3 +61,63 @@ input:user-invalid:focus {
     border-color: #a02a1d;
     box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.2);
 }
+
+dialog {
+    margin: auto auto;
+    width: 40%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--main-btn-border);
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--main-bg);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.50);
+}
+
+/* hide native dialog when not open (override browser/css that forces it visible) */
+dialog:not([open]) {
+    display: none !important;
+}
+
+/* fallback visible class for environments without dialog API */
+dialog.visible {
+    display: block;
+}
+
+@media (max-width: 750px) {
+    .title-div, #create-task-form {
+        
+    }
+
+    dialog {
+        padding: 1rem;
+        width: 60%;
+    }
+
+    label, input, select {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .title-div, #create-task-form {
+        
+    }
+
+    dialog {
+        padding: 0.5rem;
+        width: 80%
+    }
+
+    dialog h2 {
+        font-size: 0.95rem;
+    }
+
+    label, input, select {
+        font-size: 0.85rem;
+    }
+}
