@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo List</title>
+    <script defer src="main.js"></script></head>
+    <body class="body">
+        <main>
+            <section class="tasks-projecs-section flex-col">
+                <h1>To-do List</h1>
+                <div class="flex-col" id="completed-div-btn">
+                    <button id="create-task-btn">New Task</button>
+                    <button
+                        id="completed-all-btn"
+                        class="active-completed-filter"
+                    >
+                        All
+                    </button>
+                    <button id="completed-btn">Completed</button>
+                    <button id="to-do-btn">To Do</button>
+                </div>
+                <hr />
+                <div>
+                    <h2>Projects</h2>
+                    <button id="create-project-btn">New</button>
+                    <div class="projects-div" id="projects-div"></div>
+                </div>
+            </section>
+            <section class="main-section">
+                <div class="priority-div">
+                    <h2>Priority</h2>
+                    <div id="priority-div-btn">
+                        <button
+                            id="priority-all-btn"
+                            class="active-priority-filter"
+                        >
+                            All
+                        </button>
+                        <button id="low-btn">Low</button>
+                        <button id="medium-btn">Medium</button>
+                        <button id="high-btn">High</button>
+                    </div>
+                </div>
+                <div id="cards-div"></div>
+            </section>
+        </main>
+    </body>
+    <footer class="footer">
+        <p>
+            Created by
+            <a href="https://github.com/yaoming16" target="_blank"
+                >Pablo Perez</a
+            >
+        </p>
+        <p>
+            Learn more
+            <a href="https://yaoming16.github.io/" target="_blank">about me</a>
+        </p>
+    </footer>
+</html>
