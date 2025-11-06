@@ -12,12 +12,13 @@ export function deleteBtn(project, projectList, cardContainer) {
         projectList.removeProject(project.id);
 
         if (projectList.projectCount !== 0) {
-            const newActive = document.querySelector(`#${projectList.activeProject().id}`)
+            const newActive = document.querySelector(
+                `#${projectList.activeProject().id} button`
+            );
             newActive.classList.add("project-button-active");
-
         }
         //Change display of cards
-        addCardOfActiveProject(projectList, cardContainer);       
+        addCardOfActiveProject(projectList, cardContainer);
     });
 
     return button;

@@ -1,8 +1,8 @@
 .project-button-container {
     width: 100%;
     display: flex;
-    align-items: stretch; 
-    margin-bottom: 8px; 
+    align-items: stretch;
+    margin-bottom: 8px;
 }
 
 .project-button {
@@ -14,7 +14,7 @@
     justify-content: flex-start;
     background: white;
     transition: all 0.2s ease-in-out;
-    border-radius: 8px 0 0 8px; 
+    border-radius: 8px 0 0 8px;
     border-right: none;
     font-size: 0.95rem;
     /* replace aggressive breaks with friendlier wrapping */
@@ -30,6 +30,7 @@
 
 .project-button-active {
     border-color: var(--main-btn-active);
+    border-width: 4px;
     font-weight: 500;
     background: rgba(180, 170, 230, 0.1);
 }
@@ -37,7 +38,7 @@
 .delete-project-button {
     flex: 0 0 20%;
     padding: 6px;
-    border-radius: 0 8px 8px 0; 
+    border-radius: 0 8px 8px 0;
     border: 2px solid rgba(var(--danger-rgb), 0.3);
     background: rgba(255, 255, 255, 0.9);
     display: flex;
@@ -45,7 +46,7 @@
     justify-content: center;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .delete-project-button:hover {
@@ -88,7 +89,7 @@
         padding: 0.75rem;
         font-size: 0.9rem;
     }
-    
+
     .delete-project-button svg {
         width: 14px;
         height: 14px;
@@ -99,18 +100,18 @@
     .project-button-container {
         margin-bottom: 6px;
     }
-    
+
     .project-button {
         flex: 0 0 75%;
         padding: 0.5rem;
         font-size: 0.85rem;
     }
-    
+
     .delete-project-button {
         flex: 0 0 25%;
         padding: 4px;
     }
-    
+
     .delete-project-button svg {
         width: 12px;
         height: 12px;
@@ -118,10 +119,22 @@
 }
 
 @media (min-width: 1024px) {
-  .project-button-container { margin-bottom: 6px; }
-  .project-button { padding: 0.75rem; font-size: 0.9rem; }
-  .project-button:hover { transform: scale(1.01); }
+    .project-button-container {
+        margin-bottom: 6px;
+    }
+    .project-button {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    .project-button:hover {
+        transform: scale(1.01);
+    }
 
-  .delete-project-button { padding: 4px; }
-  .delete-project-button svg { width: 14px; height: 14px; }
+    .delete-project-button {
+        padding: 4px;
+    }
+    .delete-project-button svg {
+        width: 14px;
+        height: 14px;
+    }
 }

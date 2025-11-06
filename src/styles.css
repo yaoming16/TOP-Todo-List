@@ -115,7 +115,7 @@ button:disabled {
 .active-completed-filter {
     border-color: var(--main-btn-active);
     font-weight: 500;
-    border-width: 2px;
+    border-width: 4px;
     background: rgba(150, 140, 210, 0.1);
 }
 
@@ -195,12 +195,6 @@ select {
     min-width: 0;
     flex: 1;
     padding: 1rem;
-}
-
-.active-completed-filter {
-    border-color: var(--main-btn-active);
-    font-weight: 500;
-    border-width: 4px;
 }
 
 .active-priority-filter {
