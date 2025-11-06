@@ -14,6 +14,18 @@
 
     /* Softer purple for lines */
     --line-color: rgb(155, 145, 205);
+
+    /* Shared component tokens */
+    --radius-md: 12px;
+
+    /* Semantic colors */
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    /* RGB for alpha uses */
+    --danger-rgb: 231, 76, 60;
+    --warning-rgb: 243, 156, 18;
+    --success-rgb: 39, 174, 96;
 }
 
 * {
@@ -34,14 +46,12 @@ main {
 }
 
 h1 {
-    height: 10%;
     text-align: center;
     margin-bottom: 2rem;
     color: #2c3e50;
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.5px;
-    text-align: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -61,7 +71,6 @@ button {
     align-items: center;
     justify-content: center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
     min-height: 44px;
 }
 
@@ -81,6 +90,14 @@ button:focus {
     box-shadow: 0 0 0 3px rgba(180, 170, 230, 0.3);
 }
 
+/* Accessible focus for form fields and links */
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(180, 170, 230, 0.35);
+}
+
 button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -88,13 +105,7 @@ button:disabled {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.priority-div h2 {
-    height: 10%;
-}
-
-.main-section {
-    padding: 1rem;
-}
+/* Removed fixed heights on headings to avoid layout issues */
 
 .main-section h2 {
     margin-bottom: 0.5rem;
@@ -141,17 +152,8 @@ hr {
     margin-bottom: 1rem;
 }
 
-input {
-    font-size: 1rem;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.4rem;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 0.3rem;
-    margin-bottom: 0.8rem;
-}
-
+/* Inputs and selects share the same base styles */
+input,
 select {
     font-size: 1rem;
     padding: 0.5rem;
@@ -167,10 +169,6 @@ select {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 0.5rem;
-}
-
-.main-section button {
-    border-color: var(--secondary-btn-border);
 }
 
 .flex-col {
@@ -252,6 +250,39 @@ button.close-btn:focus {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding-inline: 12px; /* subtle gutters so cards don't touch edges */
+    max-width: 1200px;
+    margin-inline: auto; /* center on wide screens */
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--line-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    color: #5a6c7d;
+    background: transparent;
+}
+
+.footer p {
+    margin: 0.15rem 0;
+}
+
+.footer a {
+    color: var(--secondary-btn-active);
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
 
 /* TABLET (768px and down) */
@@ -282,10 +313,6 @@ button.close-btn:focus {
         font-size: 0.85rem;
     }
 
-    .main-section {
-        width: 70%;
-    }
-
     .main-section button {
         padding: 0.7rem 0.9rem;
         font-size: 0.85rem;
@@ -305,6 +332,10 @@ button.close-btn:focus {
         width: 34px !important;
         height: 34px !important;
         font-size: 1.4rem !important;
+    }
+
+    #cards-div {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -390,10 +421,6 @@ button.close-btn:focus {
     }
     h2 {
         font-size: 1.1rem;
-    }
-    .current-state {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
     }
 
     .tasks-projecs-section {

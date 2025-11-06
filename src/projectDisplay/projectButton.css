@@ -24,7 +24,7 @@
 }
 
 .project-button:hover {
-    background: rgba(235, 180, 234, 0.05);
+    background: rgba(180, 170, 230, 0.05);
     transform: scale(1.02);
 }
 
@@ -38,7 +38,7 @@
     flex: 0 0 20%;
     padding: 6px;
     border-radius: 0 8px 8px 0; 
-    border: 2px solid rgba(214, 48, 49, 0.3);
+    border: 2px solid rgba(var(--danger-rgb), 0.3);
     background: rgba(255, 255, 255, 0.9);
     display: flex;
     align-items: center;
@@ -49,21 +49,21 @@
 }
 
 .delete-project-button:hover {
-    background: rgba(214, 48, 49, 0.1);
-    border-color: rgba(214, 48, 49, 0.5);
+    background: rgba(var(--danger-rgb), 0.1);
+    border-color: rgba(var(--danger-rgb), 0.5);
     transform: scale(1.02);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .delete-project-button:active {
     transform: scale(0.95);
-    background: rgba(214, 48, 49, 0.2);
+    background: rgba(var(--danger-rgb), 0.2);
 }
 
 .delete-project-button svg {
     width: 16px;
     height: 16px;
-    fill: #d63031;
+    fill: var(--danger);
     opacity: 0.8;
     transition: all 0.2s ease-in-out;
     pointer-events: none;
@@ -80,7 +80,7 @@
 
 .delete-project-button:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(214, 48, 49, 0.3);
+    box-shadow: 0 0 0 2px rgba(var(--danger-rgb), 0.3);
 }
 
 @media (max-width: 768px) {

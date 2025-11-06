@@ -18,15 +18,15 @@
 
 /* Priority-specific left borders */
 .card-div[data-priority="high"] {
-    border-left-color: #e74c3c;
+    border-left-color: var(--danger);
 }
 
 .card-div[data-priority="medium"] {
-    border-left-color: #f39c12;
+    border-left-color: var(--warning);
 }
 
 .card-div[data-priority="low"] {
-    border-left-color: #27ae60;
+    border-left-color: var(--success);
 }
 
 /* Title */
@@ -81,7 +81,7 @@
     width: 18px;
     height: 18px;
     cursor: pointer;
-    accent-color: #2ecc71;
+    accent-color: var(--success);
 }
 
 .card-div label {
@@ -114,20 +114,20 @@
 .card-div button svg {
     width: 32px;
     height: 32px;
-    fill: #e74c3c;
+    fill: var(--danger);
 }
 
 /* Priority colors */
 .card-div[data-priority="high"] p:first-of-type {
-    color: #e74c3c;
+    color: var(--danger);
 }
 
 .card-div[data-priority="medium"] p:first-of-type {
-    color: #f39c12;
+    color: var(--warning);
 }
 
 .card-div[data-priority="low"] p:first-of-type {
-    color: #27ae60;
+    color: var(--success);
 }
 
 /* Completed card styling */
